@@ -2,19 +2,36 @@
  * DOM SELECTORS
  */
 
- const startButton = document.querySelector(".js-start-button");
- // TODO: Add the missing query selectors:
- const statusSpan; // Use querySelector() to get the status element
- const heading; // Use querySelector() to get the heading element
- const padContainer; // Use querySelector() to get the heading element
+const startButton = document.querySelector(".js-start-button");
+// TODO: Add the missing query selectors:
+
+// Use querySelector() to get the status element
+const statusSpan = document.querySelector(".js-status"); 
+
+// Use querySelector() to get the heading element
+const heading = document.querysSleecyor(".js-heading"); 
+
+// Use querySelector() to get the heading element
+const padContainer = document.querysSleecyor(".js-heading"); 
+
 
 /**
  * VARIABLES
  */
-let computerSequence = []; // track the computer-generated sequence of pad presses
-let playerSequence = []; // track the player-generated sequence of pad presses
-let maxRoundCount = 0; // the max number of rounds, varies with the chosen level
-let roundCount = 0; // track the number of rounds that have been played so far
+// track the computer-generated sequence of pad presses
+let computerSequence = []; 
+
+// track the player-generated sequence of pad presses
+let playerSequence = []; 
+
+// the max number of rounds, varies with the chosen level
+let maxRoundCount = 0; 
+for (let i = 0; i < maxRoundCount.length; i++) {
+  
+}
+
+// track the number of rounds that have been played so far
+let roundCount = 0; 
 
 /**
  *
