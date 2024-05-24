@@ -27,7 +27,18 @@ let playerSequence = [];
 // the max number of rounds, varies with the chosen level
 let maxRoundCount = 0; 
 for (let i = 0; i < maxRoundCount.length; i++) {
-  
+  let level = maxRoundCount[i];
+  if (level === 1) {
+    maxRoundCount = 8;
+  } else if (level === 2) {
+    maxRoundCount = 14;
+  } else if (level === 3) {
+    maxRoundCount = 20;
+  } else if (level === 4) {
+    maxRoundCount = 26;
+  } else {
+    maxRoundCount = "Invalid level";
+  }
 }
 
 // track the number of rounds that have been played so far
@@ -65,13 +76,13 @@ let roundCount = 0;
         color: "blue",
         selector: document.querySelector(".js-pad-blue");
         sound: new audio("../assets/simon-says-sound-3.mp3");
-    };
-    
+    },
+  
     {
         color: "yellow";
         selector: document.querySelector(".js-pad-yellow");
         sound: new audio("../assets/simon-says-sound-4.mp3");
-    };
+    },
 ];
 
 /**
@@ -128,6 +139,11 @@ function padHandler(event) {
   if (!color) return;
 
   // TODO: Write your code here.
+  else {
+    const pad = pads.find(pad => pad.color === color);
+    pad.sound.play();
+    checkPress(color);
+  }
   return color;
 }
 
@@ -176,9 +192,9 @@ function setLevel(level = 1) {
  * getRandomItem([1, 2, 3, 4]) //> returns 1
  */
 function getRandomItem(collection) {
-  // if (collection.length === 0) return null;
-  // const randomIndex = Math.floor(Math.random() * collection.length);
-  // return collection[randomIndex];
+   if (collection.length === 0) return null;
+   const randomIndex = Math.floor(Math.random() * collection.length);
+   return collection[randomIndex];
 }
 
 /**
@@ -204,6 +220,7 @@ function setText(element, text) {
 
 function activatePad(color) {
   // TODO: Write your code here.
+  pads.find(pad => pad.color === color);
 }
 
 /**
