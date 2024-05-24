@@ -39,6 +39,7 @@ for (let i = 0; i < maxRoundCount.length; i++) {
   } else {
     maxRoundCount = "Invalid level";
   }
+  return maxRoundCount;
 }
 
 // track the number of rounds that have been played so far
@@ -74,14 +75,14 @@ let roundCount = 0;
     
     {
         color: "blue",
-        selector: document.querySelector(".js-pad-blue");
-        sound: new audio("../assets/simon-says-sound-3.mp3");
+        selector: document.querySelector(".js-pad-blue"),
+        sound: new audio("../assets/simon-says-sound-3.mp3"),
     },
   
     {
-        color: "yellow";
-        selector: document.querySelector(".js-pad-yellow");
-        sound: new audio("../assets/simon-says-sound-4.mp3");
+        color: "yellow",
+        selector: document.querySelector(".js-pad-yellow"),
+        sound: new audio("../assets/simon-says-sound-4.mp3"),
     },
 ];
 
@@ -221,6 +222,9 @@ function setText(element, text) {
 function activatePad(color) {
   // TODO: Write your code here.
   pads.find(pad => pad.color === color);
+  classList.add("activated");
+  pad.sound.play();
+  setTimeout(( => classList.remove("activated")), 500);
 }
 
 /**
