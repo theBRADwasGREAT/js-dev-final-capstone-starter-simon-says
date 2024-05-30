@@ -9,10 +9,10 @@ const startButton = document.querySelector(".js-start-button");
 const statusSpan = document.querySelector(".js-status"); 
 
 // Use querySelector() to get the heading element
-const heading = document.querysSleecyor(".js-heading"); 
+const heading = document.querySelector(".js-heading"); 
 
 // Use querySelector() to get the heading element
-const padContainer = document.querysSleecyor(".js-heading"); 
+const padContainer = document.querySelector(".js-heading"); 
 
 
 /**
@@ -35,9 +35,9 @@ for (let i = 0; i < maxRoundCount.length; i++) {
   } else if (level === 3) {
     maxRoundCount = 20;
   } else if (level === 4) {
-    maxRoundCount = 26;
+    maxRoundCount = 31;
   } else {
-    maxRoundCount = "Invalid level";
+    maxRoundCount = "Please enter level 1, 2, 3, or 4";
   }
   return maxRoundCount;
 }
@@ -70,19 +70,19 @@ let roundCount = 0;
   {
     color: "green",
     selector: document.querySelector(".js-pad-green"),
-    sound: new audio("../assets/simon-says-sound-2.mp3"),
+    sound: new Audio("../assets/simon-says-sound-2.mp3"),
     },
     
     {
         color: "blue",
         selector: document.querySelector(".js-pad-blue"),
-        sound: new audio("../assets/simon-says-sound-3.mp3"),
+        sound: new Audio("../assets/simon-says-sound-3.mp3"),
     },
   
     {
         color: "yellow",
         selector: document.querySelector(".js-pad-yellow"),
-        sound: new audio("../assets/simon-says-sound-4.mp3"),
+        sound: new Audio("../assets/simon-says-sound-4.mp3"),
     },
 ];
 
@@ -114,7 +114,11 @@ startButton.addEventListener("click", startButtonHandler);
  */
 function startButtonHandler() {
   // TODO: Write your code here.
-
+  setLevel();
+  roundCount += 1;
+  startButton.classList.add("hidden");
+  statusSpan.classList.remove("hidden");
+  playComputerTurn();
   return { startButton, statusSpan };
 }
 
@@ -175,6 +179,21 @@ function padHandler(event) {
  */
 function setLevel(level = 1) {
   // TODO: Write your code here.
+  for (let i = 0; i < maxRoundCount.length; i++) {
+    let level = maxRoundCount[i];
+    if (level === 1) {
+      maxRoundCount = 8;
+    } else if (level === 2) {
+      maxRoundCount = 14;
+    } else if (level === 3) {
+      maxRoundCount = 20;
+    } else if (level === 4) {
+      maxRoundCount = 31;
+    } else {
+      maxRoundCount = "Please enter level 1, 2, 3, or 4";
+    }
+    return maxRoundCount;
+  }
 }
 
 /**
@@ -203,6 +222,7 @@ function getRandomItem(collection) {
  */
 function setText(element, text) {
   // TODO: Write your code here.
+  element.textContent = text;
   return element;
 }
 
@@ -243,6 +263,9 @@ function activatePad(color) {
 
 function activatePads(sequence) {
   // TODO: Write your code here.
+  for (let i = 0; i < sequence.length; i++) {
+    setTimeout(( => activatePad(sequence[i])), 600 * i)
+  }
 }
 
 /**
