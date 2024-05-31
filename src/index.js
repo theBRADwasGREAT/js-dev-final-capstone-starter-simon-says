@@ -263,10 +263,10 @@ function activatePad(color) {
 
 function activatePads(sequence) {
   // TODO: Write your code here.
-  for (let i = 0; i < sequence.length; i++) {
-    setTimeout(( => activatePad(sequence[i])), 600 * i)
+  sequence.forEach((color, index) => {
+    setTimeout(( => activatePad(color)), 600 * index);
+  });
   }
-}
 
 /**
  * Allows the computer to play its turn.
@@ -293,7 +293,11 @@ function activatePads(sequence) {
  */
  function playComputerTurn() {
   // TODO: Write your code here.
-
+  classList.add("unclickable");
+  console.log("The computer's turn...");
+  setText(heading, `Round ${roundCount} of ${maxRoundCount}`);
+  computerSequence.push(getRandomItem(colors));
+  activatePads(computerSequence);
   setTimeout(() => playHumanTurn(roundCount), roundCount * 600 + 1000); // 5
 }
 
@@ -306,6 +310,8 @@ function activatePads(sequence) {
  */
 function playHumanTurn() {
   // TODO: Write your code here.
+  classList.remove("unclickable");
+  setText(heading, `Round ${roundCount} of ${maxRoundCount}`);
 }
 
 /**
