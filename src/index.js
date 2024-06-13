@@ -14,7 +14,6 @@ const heading = document.querySelector(".js-heading");
 // Use querySelector() to get the heading element
 const padContainer = document.querySelector(".js-pad-container"); 
 
-
 /**
  * VARIABLES
  */
@@ -100,12 +99,11 @@ startButton.addEventListener("click", startButtonHandler);
  */
 function startButtonHandler() {
   // TODO: Write your code here.
-  setLevel();
+  maxRoundCount = setLevel();
   roundCount += 1;
   startButton.classList.add("hidden");
   statusSpan.classList.remove("hidden");
   playComputerTurn();
-  return { startButton, statusSpan };
 }
 
 /**
@@ -131,7 +129,7 @@ function padHandler(event) {
 
   // TODO: Write your code here.
   else {
-    const pad = pads.find(pad => pads.color === pad);
+    const pad = pads.find(pad => pad.color === color);
     pad.sound.play();
     checkPress(color);
   }
@@ -165,6 +163,8 @@ function padHandler(event) {
  */
 function setLevel(level = 1) {
   // TODO: Write your code here.
+  let maxRoundCount;
+  if (level >= 1 && level <= 4) {
     if (level === 1) {
       maxRoundCount = 8;
     } else if (level === 2) {
@@ -178,7 +178,7 @@ function setLevel(level = 1) {
     }
     return maxRoundCount;
   }
-
+}
 /**
  * Returns a randomly selected item from a given array.
  *
@@ -224,7 +224,7 @@ function setText(element, text) {
 
 function activatePad(color) {
   // TODO: Write your code here.
-  const pad = pads.find(pad => pad.color === pad);
+  const pad = pads.find(padItem => padItem.color === color);
   pad.selector.classList.add("activated");
   pad.sound.play();
   setTimeout(() => pad.selector.classList.remove("activated"), 500);
@@ -246,8 +246,8 @@ function activatePad(color) {
 
 function activatePads(sequence) {
   // TODO: Write your code here.
-  sequence.forEach((pad, index) => {
-    setTimeout(() => activatePad(pad), 600 * index);
+  sequence.forEach((color, index) => {
+    setTimeout(() => activatePad(color), 600 * index);
   });
   }
 
@@ -279,7 +279,7 @@ function activatePads(sequence) {
   padContainer.classList.add("unclickable");
   setText(statusSpan, "The computer's turn...");
   setText(heading, `Round ${roundCount} of ${maxRoundCount}`);
-  computerSequence.push(getRandomItem(pads));
+  computerSequence.push(getRandomItem(pads).color);
   activatePads(computerSequence);
   setTimeout(playHumanTurn, computerSequence.length * 600 + 1000);
 }
@@ -294,7 +294,8 @@ function activatePads(sequence) {
 function playHumanTurn() {
   // TODO: Write your code here.
   padContainer.classList.remove("unclickable");
-  setText(heading, `Round ${roundCount} of ${maxRoundCount}`);
+  const remainingPresses = maxRoundCount - roundCount;
+  setText(statusSpan, `Remaining presses: ${remainingPresses}`);
 }
 
 /**
