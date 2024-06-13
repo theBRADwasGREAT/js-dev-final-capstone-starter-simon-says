@@ -6,7 +6,7 @@ const startButton = document.querySelector(".js-start-button");
 // TODO: Add the missing query selectors:
 
 // Use querySelector() to get the status element
-const statusSpan = document.querySelector(".js-status"); 
+const statusSpan = document.querySelector(".js-status-span"); 
 
 // Use querySelector() to get the heading element
 const heading = document.querySelector(".js-heading"); 
@@ -78,6 +78,7 @@ let roundCount = 0;
 padContainer.addEventListener("click", padHandler);
 // TODO: Add an event listener `startButtonHandler()` to startButton.
 
+//Calls startButtonHandler when startButton is pressed
 startButton.addEventListener("click", startButtonHandler);
 /**
  * EVENT HANDLERS
@@ -130,7 +131,7 @@ function padHandler(event) {
 
   // TODO: Write your code here.
   else {
-    const pad = pads.find(pad => pad.color === color);
+    const pad = pads.find(pad => pad.color === pad);
     pad.sound.play();
     checkPress(color);
   }
@@ -223,7 +224,7 @@ function setText(element, text) {
 
 function activatePad(color) {
   // TODO: Write your code here.
-  pads.find(pad => pad.color === color);
+  const pad = pads.find(pad => pad.color === pad);
   pad.selector.classList.add("activated");
   pad.sound.play();
   setTimeout(() => pad.selector.classList.remove("activated"), 500);
@@ -245,8 +246,8 @@ function activatePad(color) {
 
 function activatePads(sequence) {
   // TODO: Write your code here.
-  sequence.forEach((color, index) => {
-    setTimeout(() => activatePad(color), 600 * index);
+  sequence.forEach((pad, index) => {
+    setTimeout(() => activatePad(pad), 600 * index);
   });
   }
 
@@ -276,7 +277,7 @@ function activatePads(sequence) {
  function playComputerTurn() {
   // TODO: Write your code here.
   padContainer.classList.add("unclickable");
-  console.log("The computer's turn...");
+  setText(statusSpan, "The computer's turn...");
   setText(heading, `Round ${roundCount} of ${maxRoundCount}`);
   computerSequence.push(getRandomItem(pads));
   activatePads(computerSequence);
