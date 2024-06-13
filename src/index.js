@@ -131,7 +131,7 @@ function padHandler(event) {
 
   // TODO: Write your code here.
   else {
-    const pad = pads.find(pad => pad.color === pad);
+    const pad = pads.find(pad => pads.color === pad);
     pad.sound.play();
     checkPress(color);
   }
