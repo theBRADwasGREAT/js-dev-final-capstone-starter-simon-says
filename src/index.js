@@ -353,7 +353,7 @@ function checkPress(color) {
 function checkRound() {
   // TODO: Write your code here.
   if (playerSequence.length === maxRoundCount) {
-    resetGame("Simon says you win.")
+    resetGame("Simon says you win!")
   }
 
   else {
