@@ -14,6 +14,10 @@ const heading = document.querySelector(".js-heading");
 // Use querySelector() to get the heading element
 const padContainer = document.querySelector(".js-pad-container"); 
 
+const dropdownToggle = document.querySelector(".js-dropdown-toggle");
+
+const difficultyMenu = document.querySelector(".js-difficulty-menu");
+
 /**
  * VARIABLES
  */
@@ -79,9 +83,19 @@ padContainer.addEventListener("click", padHandler);
 
 //Calls startButtonHandler when startButton is pressed
 startButton.addEventListener("click", startButtonHandler);
+
+dropdownToggle.addEventListener("click", toggleDropdown);
+
+const difficultyButtons = document.querySelectorAll(".js-difficulty-button");
+
+difficultyButtons.forEach(button => {
+  button.addEventListener("click", difficultyButtonHandler);
+});
 /**
  * EVENT HANDLERS
  */
+
+
 
 /**
  * Called when the start button is clicked.
@@ -136,6 +150,19 @@ function padHandler(event) {
   return color;
 }
 
+function toggleDropdown() {
+  difficultyMenu.classList.toggle("show");
+}
+
+function difficultyButtonHandler(event) {
+  const difficultyLevel = parseInt(event.target.dataset.level);
+  dropdownToggle.textContent = event.target.textContent;
+  maxRoundCount = setLevel(difficultyLevel);
+  alert("Level set to " + difficultyLevel);
+  startButtonHandler();
+  difficultyMenu.classList.remove("show");
+}
+
 /**
  * HELPER FUNCTIONS
  */
@@ -176,6 +203,7 @@ function setLevel(level = 1) {
     } else {
       maxRoundCount = "Please enter level 1, 2, 3, or 4";
     }
+    roundCount = 0;
     return maxRoundCount;
   }
 }

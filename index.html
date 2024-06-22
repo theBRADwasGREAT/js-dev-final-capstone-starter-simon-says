@@ -15,7 +15,18 @@
       <section class="game-controls">
         <!--TODO: Add the start button -->
         <button class="start-button js-start-button">start</button>
-        <span class="js-status-span"></span>
+        <span class="js-status-span hidden"></span>
+        <div  class="dropdown">
+          <button class="dropdown-toggle js-dropdown-toggle">
+            Difficulty
+            </button>
+            <ul class="dropdown-menu js-difficulty-menu">
+              <li class="js-difficulty-button" data-level="1">Easy</li>
+              <li class="js-difficulty-button" data-level="2">Medium</li>
+              <li class="js-difficulty-button" data-level="3">Hard</li>
+              <li class="js-difficulty-button" data-level="4">pro</li>
+            </ul>
+        </div>
       </section>
 
       <section class="pad-container unclickable js-pad-container">

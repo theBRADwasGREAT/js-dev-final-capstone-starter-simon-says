@@ -141,3 +141,50 @@ h1 {
 .unclickable {
   pointer-events: none;
 }
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-toggle {
+  background-color: transparent;
+  color: greenyellow;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 600;
+  text-transform: uppercase;
+  padding: 8px 10px;
+}
+
+.dropdown-toggle:hover {
+  color: yellow;
+  font-size: 18px;
+  border-color: yellow;
+  transform: rotate(5deg);
+}
+
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  background-color: #000;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-menu.show {
+  display: block;
+}
+
+.dropdown-menu li {
+  padding: 10px;
+  cursor: pointer;
+}
+
+.dropdown-menu li:hover {
+  background-color: #0c23f7;
+  transform: rotate(-5deg);
+}
