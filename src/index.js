@@ -116,6 +116,7 @@ function startButtonHandler() {
   maxRoundCount = setLevel();
   roundCount += 1;
   startButton.classList.add("hidden");
+  dropdownToggle.classList.add("unclickable");
   statusSpan.classList.remove("hidden");
   playComputerTurn();
 }
@@ -158,8 +159,6 @@ function difficultyButtonHandler(event) {
   const difficultyLevel = parseInt(event.target.dataset.level);
   dropdownToggle.textContent = event.target.textContent;
   maxRoundCount = setLevel(difficultyLevel);
-  alert("Level set to " + difficultyLevel);
-  startButtonHandler();
   difficultyMenu.classList.remove("show");
 }
 
