@@ -274,7 +274,7 @@ function activatePad(color) {
 function activatePads(sequence) {
   // TODO: Write your code here.
   sequence.forEach((color, index) => {
-    setTimeout(() => activatePad(color), 600 * index);
+    setTimeout(() => activatePad(color), 750 * index);
   });
   }
 
